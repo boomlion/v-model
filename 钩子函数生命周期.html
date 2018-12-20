@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .but {
+      background-color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" :value="mas">
+    <textarea name="" id="" cols="30" rows="10" placeholder="我在空荡荡的房间" :value="mas"></textarea>
+    <input type="button" @click="show" :class="{but:but}">
+  </div>
+  <script src="../lib/vue-2.4.0.js"></script>
+  <script>
+    var vm = new Vue({
+      el: "#app",
+      data: {
+        mas: '不该负气出走流浪',
+        but: true
+      },
+      methods: {
+        show() {
+          this.but = !this.but;
+        }
+
+      },
+      beforeCreate() {
+        console.log('我实例完全没有被创建出来的时候，数据还没存在')
+      },
+      created() {
+        console.log('数据存在了 可以获得了,如果要调用motheds方法，最早也要在这调用')
+      },
+      beforeMount() {
+        console.log('模板创建好了，但是还没 渲染')
+      },
+      mounted() {
+        console.log('渲染后了你信吗,我执行完完就代表实例化完全了')
+      },
+      beforeUpdate() {
+        console.log('数据更新了，但是模板还是旧的')
+      },
+      updated() {
+        console.log('数据更新完成了')
+      }
+    })
+
+  </script>
+</body>
+
+</html>
