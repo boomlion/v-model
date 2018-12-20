@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+
+<body>
+  <input type="text" name="" id="text">
+  <h1 id="title"></h1>
+  <script>
+    //获得元素
+    let text = document.getElementById('text');
+    let title = document.getElementById('title');
+    //新建一个空对象
+    const arr = {};
+    //这个是中间数，进行数据的传输
+    var empt;
+    //给arr.name绑定数据，就是当他改变的时候，进行执行函数，
+    // 获取的时候执行函数，记性监听，vue的v-model就是这么来的
+    Object.defineProperty(arr, 'name', {
+      set(value) {
+        //设置的数据进行监听
+        //以及传输来的
+        empt = value;
+        title.innerHTML = empt;
+      },
+      get() {
+        // 在调用这个函数的时候进行返回之前设置的
+        return empt;
+      }
+    })
+
+
+    //input框的传输进行监听
+    text.oninput = function (e) {
+      arr.name = e.target.value;
+    }
+
+
+  </script>
+</body>
+
+</html>
