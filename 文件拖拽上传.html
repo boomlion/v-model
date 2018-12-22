@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 300px;
+      height: 500px;
+      background-color: red;
+      margin: 0 auto;
+    }
+  </style>
+</head>
+
+<body>
+  <div>请拖拽进来</div>
+  <img src="" alt="">
+  <script>
+    let div = document.querySelector('div');
+    div.addEventListener('dragover', function (e) {
+      e.preventDefault();
+    })
+    div.addEventListener('drop', function (e) {
+      e.preventDefault();
+      //读取文件的内容然后进行赋值
+      let fr = e.dataTransfer.files[0];
+      //上面的就是拖拽文件的第一个赋值到fr
+      let f = new FileReader();
+
+
+      f.readAsDataURL(fr);
+      //然后进行添加到div里面
+
+      // FileReader.onload就是等这个文件加载完成的时候进行执行呀，而且这个命令是在释放的时候
+      //
+      f.onload = function () {
+        div.innerHTML = "<img src='" + f.result + "'>";
+
+      }
+
+    })
+
+  </script>
+</body>
+
+</html>
